@@ -1,4 +1,4 @@
-import { integer, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { integer, pgTable, point, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
 	id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -9,4 +9,10 @@ export const users = pgTable('users', {
 	updatedAt: timestamp({ withTimezone: true })
 		.defaultNow()
 		.$onUpdate(() => new Date()),
+});
+
+export const characters = pgTable('characters', {
+	id: integer().primaryKey().generatedAlwaysAsIdentity(),
+	name: text().notNull(),
+	position: point().notNull(),
 });

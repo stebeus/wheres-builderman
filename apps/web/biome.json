@@ -1,0 +1,44 @@
+{
+	"extends": "//",
+	"assist": {
+		"actions": {
+			"source": {
+				"noDuplicateClasses": "on",
+				"useSortedProperties": "on"
+			}
+		}
+	},
+	"css": {
+		"formatter": {
+			"quoteStyle": "single"
+		},
+		"parser": {
+			"tailwindDirectives": true
+		}
+	},
+	"html": {
+		"formatter": {
+			"enabled": true
+		}
+	},
+	"linter": {
+		"rules": {
+			"a11y": {
+				"noLabelWithoutControl": "off"
+			},
+			"nursery": {
+				"useBaseline": "error",
+				"useSortedClasses": "error"
+			},
+			"style": {
+				"noHexColors": "error"
+			}
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["**/*.svg"],
+			"linter": { "rules": { "a11y": { "noSvgWithoutTitle": "off" } } }
+		}
+	]
+}

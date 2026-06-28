@@ -1,0 +1,14 @@
+{
+	"extends": "//",
+	"linter": {
+		"rules": {
+			"correctness": {
+				"noProcessGlobal": "error",
+				"noUnusedFunctionParameters": "off"
+			},
+			"suspicious": {
+				"noConsole": "error"
+			}
+		}
+	}
+}

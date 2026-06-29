@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import { describe, expect, it } from 'vitest';
 
-import { app } from '#root/index.ts';
+import { app } from '#root/index.js';
 
 const URL = '/api/v1/characters';
 

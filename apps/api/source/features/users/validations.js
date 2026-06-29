@@ -1,8 +1,8 @@
 import * as z from 'zod';
 
-import { users } from '#root/database/schema.ts';
+import { users } from '#root/database/schema.js';
 
-import { authenticate, isUsernameAvailable } from './services.ts';
+import { authenticate, isUsernameAvailable } from './services.js';
 
 const { username } = users;
 
@@ -22,7 +22,7 @@ export const userSchema = z.object({
 		.string()
 		.trim()
 		.min(1, 'Username is required')
-		.max(username.length as number, `Username cannot be longer than ${username.length} characters`)
+		.max(username.length, `Username cannot be longer than ${username.length} characters`)
 		.regex(alphanumericRegex, 'Username must only contain alphanumeric characters')
 		.refine(isUsernameAvailable, 'Username is already taken'),
 	password: z
@@ -32,5 +32,3 @@ export const userSchema = z.object({
 		.max(100, 'Password cannot be longer than 100 characters'),
 	bestTimeInMs,
 });
-
-export type User = z.infer<typeof userSchema>;

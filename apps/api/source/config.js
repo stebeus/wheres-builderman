@@ -2,12 +2,10 @@ import { env, loadEnvFile } from 'node:process';
 
 import * as z from 'zod';
 
-import { isErrnoException } from './utilities/errors.ts';
-
 try {
 	loadEnvFile();
 } catch (error) {
-	if (isErrnoException(error) && error.code !== 'ENOENT') throw error;
+	if (error.code !== 'ENOENT') throw error;
 }
 
 const databaseUrlRegex = /(postgres(?:ql)?):\/\/(?:([^@\s]+)@)?([^/\s]+)(?:\/(\w+))?(?:\?(.+))?/;

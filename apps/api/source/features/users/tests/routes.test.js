@@ -1,15 +1,11 @@
 import supertest from 'supertest';
 import { describe, expect, it } from 'vitest';
 
-import { app } from '#root/index.ts';
+import { app } from '#root/index.js';
 
 const URL = '/api/v1/users';
 
-const createData = (username?: string, password?: string, bestTimeInMs?: number) => ({
-	username,
-	password,
-	bestTimeInMs,
-});
+const createData = (username, password, bestTimeInMs) => ({ username, password, bestTimeInMs });
 
 describe('GET /users', () => {
 	it('gets all users', async () => {

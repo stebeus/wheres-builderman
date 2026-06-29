@@ -1,10 +1,10 @@
 import cors from 'cors';
 import express from 'express';
 
-import { config } from './config.ts';
-import { pino } from './libraries/logger.ts';
-import { handleError, handleNotFoundError } from './middleware/errors.ts';
-import { apiRouter } from './routes.ts';
+import { config } from './config.js';
+import { pino } from './libraries/logger.js';
+import { handleError, handleNotFoundError } from './middleware/errors.js';
+import { apiRouter } from './routes.js';
 
 export const app = express();
 

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { get, getIsCharacter } from './handlers.ts';
+import { get, getIsCharacter } from './handlers.js';
 
 const router = Router();
 

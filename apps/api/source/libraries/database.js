@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/postgres-js';
 
-import { config } from '#root/config.ts';
+import { config } from '#root/config.js';
 
 export const database = drizzle({
 	casing: 'snake_case',

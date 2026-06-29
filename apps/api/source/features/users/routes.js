@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { get, postSignIn, postSignUp } from './handlers.ts';
+import { get, postSignIn, postSignUp } from './handlers.js';
 
 const router = Router();
 

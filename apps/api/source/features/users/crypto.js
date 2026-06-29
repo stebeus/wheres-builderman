@@ -5,17 +5,17 @@ const KEY_LENGTH = 64;
 
 const scryptPromise = promisify(scrypt);
 
-export const hash = async (password: string) => {
+export const hash = async (password) => {
 	const salt = randomBytes(16).toHex();
 	const derivedKey = await scryptPromise(password, salt, KEY_LENGTH);
-	return `${salt}:${(derivedKey as Buffer).toHex()}`;
+	return `${salt}:${(derivedKey).toHex()}`;
 };
 
-export const compare = async (password: string, hash: string) => {
+export const compare = async (password, hash) => {
 	const [salt, key] = hash.split(':');
 
 	const buffer = Buffer.from(key, 'hex');
 	const derivedKey = await scryptPromise(password, salt, KEY_LENGTH);
 
-	return timingSafeEqual(buffer, derivedKey as Buffer);
+	return timingSafeEqual(buffer, derivedKey);
 };

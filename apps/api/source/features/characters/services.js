@@ -1,13 +1,11 @@
-import type { Character } from './validations.ts';
-
 import { sql } from 'drizzle-orm';
 
-import { characters } from '#root/database/schema.ts';
-import { database } from '#root/libraries/database.ts';
+import { characters } from '#root/database/schema.js';
+import { database } from '#root/libraries/database.js';
 
 export const findMany = async () => await database.select().from(characters);
 
-export const isCharacter = async ({ name, position }: Character) => {
+export const isCharacter = async ({ name, position }) => {
 	const [row, column] = position.split(',');
 
 	const query = sql`

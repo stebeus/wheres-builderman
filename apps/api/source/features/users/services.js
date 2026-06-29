@@ -1,13 +1,11 @@
-import type { User } from './validations.ts';
-
 import { eq } from 'drizzle-orm';
 
-import { users } from '#root/database/schema.ts';
-import { database } from '#root/libraries/database.ts';
+import { users } from '#root/database/schema.js';
+import { database } from '#root/libraries/database.js';
 
-import { compare, hash } from './crypto.ts';
+import { compare, hash } from './crypto.js';
 
-export const create = async ({ username, password, bestTimeInMs }: User) => {
+export const create = async ({ username, password, bestTimeInMs }) => {
 	const hashedPassword = await hash(password);
 
 	const [user] = await database
@@ -20,12 +18,12 @@ export const create = async ({ username, password, bestTimeInMs }: User) => {
 
 export const findMany = async () => await database.select().from(users).orderBy(users.bestTimeInMs);
 
-export const findFirst = async (username: string) => {
+export const findFirst = async (username) => {
 	const [user] = await database.select().from(users).where(eq(users.username, username)).limit(1);
 	return user;
 };
 
-export const authenticate = async ({ username, password }: User) => {
+export const authenticate = async ({ username, password }) => {
 	const user = await findFirst(username);
 	if (user == null) return false;
 
@@ -33,9 +31,9 @@ export const authenticate = async ({ username, password }: User) => {
 	return isMatch;
 };
 
-export const isUsernameAvailable = async (username: string) => (await findFirst(username)) == null;
+export const isUsernameAvailable = async (username) => (await findFirst(username)) == null;
 
-export const update = async ({ username, bestTimeInMs }: User) => {
+export const update = async ({ username, bestTimeInMs }) => {
 	const [user] = await database
 		.update(users)
 		.set({ bestTimeInMs })

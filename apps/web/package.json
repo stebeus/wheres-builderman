@@ -7,7 +7,7 @@
 		"#root/*": "./source/*"
 	},
 	"scripts": {
-		"build": "tsc -b && vite build",
+		"build": "vite build",
 		"dev": "vite",
 		"preview": "vite preview",
 		"test": "vitest"
@@ -19,16 +19,11 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.29.7",
-		"@repository/typescript-config": "workspace:*",
 		"@rolldown/plugin-babel": "^0.2.3",
 		"@tailwindcss/vite": "^4.3.1",
-		"@types/babel__core": "^7.20.5",
-		"@types/react": "^19.2.17",
-		"@types/react-dom": "^19.2.3",
 		"@vitejs/plugin-react": "^6.0.2",
 		"babel-plugin-react-compiler": "^1.0.0",
 		"tailwindcss": "^4.3.1",
-		"typescript": "~6.0.2",
 		"vite": "^8.1.0"
 	}
 }

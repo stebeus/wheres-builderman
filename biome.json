@@ -99,12 +99,6 @@
 					"options": {
 						"filenameCases": ["kebab-case"]
 					}
-				},
-				"useImportType": {
-					"level": "error",
-					"options": {
-						"style": "separatedType"
-					}
 				}
 			},
 			"suspicious": {

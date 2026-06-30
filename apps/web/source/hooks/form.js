@@ -18,6 +18,7 @@ export const useForm = ({ endpoint, payload, method = 'post', onAction }) => {
 				body: JSON.stringify(newFormData),
 			});
 
+			event.target.reset();
 			onAction();
 		} catch (error) {
 			setError(error.json.details);

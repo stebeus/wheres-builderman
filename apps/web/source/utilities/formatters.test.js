@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { pluralize } from './formatters.js';
+import { pluralize, toSeconds } from './formatters.js';
 
 describe('pluralize', () => {
 	describe('Given no options,', () => {
@@ -31,5 +31,15 @@ describe('pluralize', () => {
 		it('pluralizes nouns', () => {
 			expect(pluralize(10, 'person', { plural: 'people' })).toBe('people');
 		});
+	});
+});
+
+describe('toSeconds', () => {
+	it('formats 1,000 milliseconds to 1 second', () => {
+		expect(toSeconds(1000)).toBe('1 second');
+	});
+
+	it('formats 10,000 milliseconds to 10 seconds', () => {
+		expect(toSeconds(10 * 1000)).toBe('10 seconds');
 	});
 });

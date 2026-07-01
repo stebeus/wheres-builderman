@@ -1,15 +1,26 @@
-import { useEffect, useRef, useState } from 'react';
+import { StrictMode, useEffect, useRef, useState } from 'react';
 
-import { Footer, GamePicture, Navbar } from './components/index.js';
-import { Authentication, Leaderboard, Success, Welcome } from './components/modals/index.js';
-import { createModal, ListPopover } from './components/ui/index.js';
+import { CharactersPopover, Footer, GamePicture, Navbar } from './components/index.js';
+import {
+	Authentication,
+	createModal,
+	Leaderboard,
+	Modal,
+	Success,
+	Welcome,
+} from './components/modals/index.js';
+import { ErrorFallback, Loader } from './components/ui/index.js';
+import { useFetch } from './hooks/fetch.js';
 
 export const App = () => {
-	const welcomeRef = useRef(null);
 	const authenticationRef = useRef(null);
 	const successRef = useRef(null);
+	const welcomeRef = useRef(null);
 
 	const [time, setTime] = useState(0);
+	const [position, setPosition] = useState('');
+
+	const { isLoading, error, data = [] } = useFetch('characters');
 
 	const handleAction = () => {
 		authenticationRef.current.close();
@@ -17,11 +28,6 @@ export const App = () => {
 	};
 
 	const modals = [
-		{
-			id: 'welcome',
-			ref: welcomeRef,
-			children: <Welcome />,
-		},
 		{
 			id: 'leaderboard',
 			children: <Leaderboard />,
@@ -39,18 +45,27 @@ export const App = () => {
 		},
 	];
 
-	useEffect(() => welcomeRef.current.showModal());
+	useEffect(() => {
+		if (!isLoading) welcomeRef.current.showModal();
+	}, [isLoading]);
+
+	if (isLoading) return <Loader />;
+	if (error != null) return <ErrorFallback error={error} />;
 
 	return (
 		<>
-			<Navbar />
-			<main>
-				<button popoverTarget="list-popover">open p</button>
-				<ListPopover items={['hi', 'bye']} />
-				<GamePicture />
-			</main>
-			<Footer />
-			{modals.map(createModal)}
+			<StrictMode>
+				<Navbar />
+				<main>
+					<GamePicture characters={data} positionSetter={setPosition} />
+					<CharactersPopover characters={data} position={position} />
+				</main>
+				<Footer />
+				{modals.map(createModal)}
+			</StrictMode>
+			<Modal id="welcome" ref={welcomeRef}>
+				<Welcome characters={data} />
+			</Modal>
 		</>
 	);
 };

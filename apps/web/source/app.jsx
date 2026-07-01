@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Footer, Navbar } from './components/index.js';
+import { Footer, GamePicture, Navbar } from './components/index.js';
 import { Authentication, Leaderboard, Success, Welcome } from './components/modals/index.js';
 import { createModal } from './components/ui/index.js';
 
@@ -44,7 +44,9 @@ export const App = () => {
 	return (
 		<>
 			<Navbar />
-			<main></main>
+			<main>
+				<GamePicture />
+			</main>
 			<Footer />
 			{modals.map(createModal)}
 		</>

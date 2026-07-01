@@ -1,6 +1,3 @@
-/** biome-ignore-all lint/a11y/noStaticElementInteractions: <The cells are characters target boxes> */
-/** biome-ignore-all lint/a11y/noNoninteractiveTabindex: <The cells are characters target boxes> */
-
 const createGrid = (rows, columns, ...cellValues) => {
 	const grid = Array.from({ length: rows }, () => new Array(columns).fill(null));
 	for (const { row, column, description } of cellValues) grid[row][column] = description;
@@ -11,15 +8,10 @@ const createCell = (row) => (description, column) => {
 	const tabIndex = description != null && { tabIndex: 0 };
 
 	return (
-		<div
-			data-position={`${row},${column}`}
-			onClick={() => {}}
-			onKeyDown={() => {}}
-			key={crypto.randomUUID()}
-		>
-			<p {...tabIndex}>
+		<div data-position={`${row},${column}`} key={crypto.randomUUID()}>
+			<button popoverTarget="list-popover" {...tabIndex}>
 				<strong>{description}</strong>. Located at row {row} and column {column}.
-			</p>
+			</button>
 		</div>
 	);
 };

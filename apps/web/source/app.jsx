@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { Footer, GamePicture, Navbar } from './components/index.js';
 import { Authentication, Leaderboard, Success, Welcome } from './components/modals/index.js';
-import { createModal } from './components/ui/index.js';
+import { createModal, ListPopover } from './components/ui/index.js';
 
 export const App = () => {
 	const welcomeRef = useRef(null);
@@ -45,6 +45,8 @@ export const App = () => {
 		<>
 			<Navbar />
 			<main>
+				<button popoverTarget="list-popover">open p</button>
+				<ListPopover items={['hi', 'bye']} />
 				<GamePicture />
 			</main>
 			<Footer />

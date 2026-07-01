@@ -1,51 +1,51 @@
-const createGrid = (rows, columns, ...cellValues) => {
-	const grid = Array.from({ length: rows }, () => new Array(columns).fill(null));
-	for (const { row, column, description } of cellValues) grid[row][column] = description;
+import { useContext } from 'react';
+
+import { popoverIdContext } from './characters-popover.jsx';
+import { Button } from './ui/button.jsx';
+
+const createGrid = (rows = 1, columns = 1, placements = []) => {
+	const createColumns = () => new Array(columns).fill(null);
+
+	const grid = Array.from({ length: rows }, createColumns);
+	for (const { row, column, description } of placements) grid[row][column] = description;
+
 	return grid;
 };
 
-const createCell = (row) => (description, column) => {
-	const tabIndex = description != null && { tabIndex: 0 };
+const createPlacement = ({ description, position: [row, column] }) => ({
+	row,
+	column,
+	description,
+});
+
+const createCell = (row, positionSetter) => (description, column) => {
+	const popoverId = useContext(popoverIdContext);
+
+	const ariaLabel = description != null && {
+		'aria-label': `${description}, located at row ${row} and column ${column}`,
+	};
+
+	const tabIndex = description == null && { tabIndex: -1 };
+
+	const handleClick = () => positionSetter(`${row},${column}`);
 
 	return (
-		<div data-position={`${row},${column}`} key={crypto.randomUUID()}>
-			<button popoverTarget="list-popover" {...tabIndex}>
-				<strong>{description}</strong>. Located at row {row} and column {column}.
-			</button>
-		</div>
+		<Button
+			data-position={`${row},${column}`}
+			popoverTarget={popoverId}
+			{...ariaLabel}
+			{...tabIndex}
+			onClick={handleClick}
+			key={crypto.randomUUID()}
+		></Button>
 	);
 };
 
-export const GamePicture = () => {
-	const rows = 16;
-	const columns = 26;
+export const GamePicture = ({ characters, positionSetter }) => {
+	const [rows, columns] = [16, 27];
+	const grid = createGrid(rows, columns, characters.map(createPlacement));
 
-	const grid = createGrid(
-		rows,
-		columns,
-		{ row: 0, column: 0, description: 'I am a noob' },
-		{ row: 10, column: 20, description: 'I am a pro' },
-	);
+	const createRow = (_, row) => grid[row].map(createCell(row, positionSetter));
 
-	const createRow = (_, row) => grid[row].map(createCell(row));
-
-	const style = /* css */ `
-		.grid {
-			display: grid;
-			grid-template-rows: repeat(${rows}, 100px);
-			grid-template-columns: repeat(${columns}, 100px);
-
-			div {
-				outline: 1px solid red;
-				font-size: 12px;
-				overflow-x: auto;
-			}
-		}`;
-
-	return (
-		<div className="grid">
-			<style>{style}</style>
-			{grid.map(createRow)}
-		</div>
-	);
+	return <div className="grid">{grid.map(createRow)}</div>;
 };

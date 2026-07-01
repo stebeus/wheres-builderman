@@ -13,7 +13,7 @@ describe('pluralize', () => {
 		});
 	});
 
-	describe('Given suffixes,', () => {
+	describe('Given custom suffixes,', () => {
 		it('preserves singulars', () => {
 			expect(pluralize(1, 'fox', { suffix: 'es' })).toBe('fox');
 		});
@@ -23,7 +23,7 @@ describe('pluralize', () => {
 		});
 	});
 
-	describe('Given plurals,', () => {
+	describe('Given custom plurals,', () => {
 		it('preserves singulars', () => {
 			expect(pluralize(1, 'person', { plural: 'people' })).toBe('person');
 		});

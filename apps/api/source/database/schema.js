@@ -14,5 +14,6 @@ export const users = pgTable('users', {
 export const characters = pgTable('characters', {
 	id: integer().primaryKey().generatedAlwaysAsIdentity(),
 	name: text().notNull(),
+	description: text().notNull(),
 	position: point().notNull(),
 });

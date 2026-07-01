@@ -8,7 +8,7 @@ const createScore = ({ id, username, bestTimeInMs }) => (
 );
 
 export const Leaderboard = () => {
-	const { data, isLoading, error } = useFetch('users');
+	const { isLoading, error, data } = useFetch('users');
 
 	if (isLoading) return <Loader />;
 	if (error != null) return <ErrorFallback error={error} />;

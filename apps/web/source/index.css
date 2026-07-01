@@ -1,1 +1,7 @@
 /* @import 'tailwindcss'; */
+
+/* todo: Remove this styling */
+.grid {
+	display: grid;
+	grid-template: repeat(16, 2.5rem) / repeat(27, 2.5rem);
+}

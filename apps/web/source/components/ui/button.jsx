@@ -5,7 +5,7 @@ export const Button = ({ type = 'button', children, ...props }) => (
 );
 
 export const CloseButton = ({ commandFor, children }) => (
-	<Button command="close" commandfor={`${commandFor}-modal`} aria-label="close">
+	<Button commandfor={`${commandFor}-modal`} command="close" aria-label="close">
 		{children}
 	</Button>
 );

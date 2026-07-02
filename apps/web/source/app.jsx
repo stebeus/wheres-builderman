@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Footer, Navbar } from './components/index.js';
 import { Authentication, Leaderboard, Success, Welcome } from './components/modals/index.js';
 import { createModal } from './components/ui/index.js';
+import { useInterval } from './hooks/interval.js';
 
 export const App = () => {
 	const welcomeRef = useRef(null);
@@ -10,10 +11,12 @@ export const App = () => {
 	const successRef = useRef(null);
 
 	const [isFirstRender, setIsFirstRender] = useState(true);
+	const [canTick, setCanTick] = useState(false);
 	const [timer, setTimer] = useState(0);
 
 	const handleWelcomeClose = () => {
 		setIsFirstRender(false);
+		setCanTick(true);
 	};
 
 	const handleAction = () => {
@@ -47,6 +50,8 @@ export const App = () => {
 	useEffect(() => {
 		if (isFirstRender) welcomeRef.current.showModal();
 	}, [isFirstRender]);
+
+	useInterval(() => setTimer(timer + 1), canTick ? 1 : null);
 
 	return (
 		<>

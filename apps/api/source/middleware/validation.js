@@ -18,7 +18,7 @@ export const validate = (schemas) => async (req, res, next) => {
 			return handleBadRequestError(details, req, res, next);
 		}
 
-		req[key] = data;
+		res.locals[key] = data;
 	}
 
 	next();

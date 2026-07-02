@@ -7,10 +7,10 @@ export const get = async (req, res) => res.send({ data: await findMany() });
 
 export const postSignIn = [
 	validate({ body: signInSchema }),
-	async (req, res) => res.send({ data: await update(req.body) }),
+	async (req, res) => res.send({ data: await update(res.locals.body) }),
 ];
 
 export const postSignUp = [
 	validate({ body: userSchema }),
-	async (req, res) => res.send({ data: await create(req.body) }),
+	async (req, res) => res.send({ data: await create(res.locals.body) }),
 ];

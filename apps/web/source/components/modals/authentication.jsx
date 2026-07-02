@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { createField, FieldErrors, getFieldErrors, Input } from '#root/components/forms/index.js';
 import { createSubmitButton } from '#root/components/ui/index.js';
 import { useForm } from '#root/hooks/form.js';
-import { toApproximatedSecond } from '#root/utilities/formatters.js';
+import { toSecond } from '#root/utilities/formatters.js';
 
 const fields = [
 	{
@@ -34,12 +34,12 @@ const submitButtons = [
 
 const isSignIn = (endpoint) => endpoint === submitButtons[0].endpoint;
 
-export const Authentication = ({ bestTimeInMs, onAction }) => {
+export const Authentication = ({ bestTimeInCs, onAction }) => {
 	const [endpoint, setEndpoint] = useState('');
 
 	const { error, handleSubmit } = useForm({
 		endpoint: `users/${endpoint}`,
-		payload: { bestTimeInMs },
+		payload: { bestTimeInCs },
 		onAction,
 	});
 
@@ -52,7 +52,7 @@ export const Authentication = ({ bestTimeInMs, onAction }) => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<h2>New high score!</h2>
-			<p>You finished in {toApproximatedSecond(bestTimeInMs)}.</p>
+			<p>You finished in {toSecond(bestTimeInCs)}.</p>
 			<p>Log in or register to save your score:</p>
 			{fieldErrors}
 			{fields.map(createField)}

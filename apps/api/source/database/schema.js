@@ -4,7 +4,7 @@ export const users = pgTable('users', {
 	id: integer().primaryKey().generatedAlwaysAsIdentity(),
 	username: varchar({ length: 50 }).notNull().unique(),
 	password: text().notNull(),
-	bestTimeInMs: integer().notNull(),
+	bestTimeInCs: integer().notNull(),
 	createdAt: timestamp({ withTimezone: true }).defaultNow(),
 	updatedAt: timestamp({ withTimezone: true })
 		.defaultNow()

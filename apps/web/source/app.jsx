@@ -51,7 +51,8 @@ export const App = () => {
 		if (canWelcome) welcomeRef.current.showModal();
 	}, [canWelcome]);
 
-	useInterval(() => setTimer(timer + 1), canTick ? 1 : null);
+	const centisecondDelay = 10;
+	useInterval(() => setTimer(timer + 1), canTick ? centisecondDelay : null);
 
 	return (
 		<>

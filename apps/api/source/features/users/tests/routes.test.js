@@ -21,7 +21,7 @@ describe('POST /users/sign-in', () => {
 		case            | data
 		${'empty'}      | ${null}
 		${'incomplete'} | ${createData('john_doe', '1234')}
-		${'invalid'}    | ${createData('john_doe', 'abcd', 1000)}
+		${'invalid'}    | ${createData('john_doe', 'abcd', 100)}
 	`('rejects $case data', async ({ data }) => {
 		const { status } = await supertest(app).post(`${URL}/sign-in`).send(data);
 		expect(status).toBe(400);
@@ -30,7 +30,7 @@ describe('POST /users/sign-in', () => {
 	it('signs the user in', async () => {
 		const { status, body } = await supertest(app)
 			.post(`${URL}/sign-in`)
-			.send(createData('john_doe', '1234', 1000));
+			.send(createData('john_doe', '1234', 100));
 
 		expect(status).toBe(200);
 		expect(body.data.id).toBeDefined();
@@ -42,7 +42,7 @@ describe('POST /users/sign-up', () => {
 		case            | data
 		${'empty'}      | ${null}
 		${'incomplete'} | ${createData('john_doe', '1234')}
-		${'invalid'}    | ${createData('john_doe', '123', 1000)}
+		${'invalid'}    | ${createData('john_doe', '123', 100)}
 	`('rejects $case data', async ({ data }) => {
 		const { status } = await supertest(app).post(`${URL}/sign-up`).send(data);
 		expect(status).toBe(400);
@@ -55,7 +55,7 @@ describe('POST /users/sign-up', () => {
 		// Act
 		const { status, body } = await supertest(app)
 			.post(`${URL}/sign-up`)
-			.send(createData(username, '1234', 1000));
+			.send(createData(username, '1234', 100));
 
 		// Assert
 		expect(status).toBe(200);

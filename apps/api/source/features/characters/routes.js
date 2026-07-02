@@ -5,6 +5,6 @@ import { get, getIsCharacter } from './handlers.js';
 const router = Router();
 
 router.get('/', get);
-router.get('/name/:name/position/:position', getIsCharacter);
+router.get('/is-character', getIsCharacter);
 
 export { router as charactersRouter };

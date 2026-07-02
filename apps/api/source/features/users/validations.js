@@ -9,14 +9,6 @@ const { username } = users;
 const bestTimeInMs = z.coerce.number().int().positive();
 const alphanumericRegex = /\w/g;
 
-export const signInSchema = z
-	.object({
-		username: z.string(),
-		password: z.string(),
-		bestTimeInMs,
-	})
-	.refine(authenticate, 'Invalid credentials');
-
 export const userSchema = z.object({
 	username: z
 		.string()
@@ -32,3 +24,11 @@ export const userSchema = z.object({
 		.max(100, 'Password cannot be longer than 100 characters'),
 	bestTimeInMs,
 });
+
+export const signInSchema = z
+	.object({
+		username: z.string(),
+		password: z.string(),
+		bestTimeInMs,
+	})
+	.refine(authenticate, 'Invalid credentials');

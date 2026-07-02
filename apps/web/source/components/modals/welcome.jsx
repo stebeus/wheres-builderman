@@ -1,7 +1,7 @@
 import { CloseButton } from '#root/components/ui/index.js';
 import { config } from '#root/config.js';
 
-export const Welcome = () => (
+export const Welcome = ({ onClose }) => (
 	<>
 		<h2>
 			Welcome to <em>{config.VITE_APP_NAME}</em>
@@ -13,6 +13,8 @@ export const Welcome = () => (
 		<p>
 			You can also press <kbd>Tab</kbd> to get to each character quickly.
 		</p>
-		<CloseButton commandFor="welcome">Play now</CloseButton>
+		<CloseButton commandFor="welcome" onClick={onClose}>
+			Play now
+		</CloseButton>
 	</>
 );

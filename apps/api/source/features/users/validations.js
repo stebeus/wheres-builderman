@@ -6,8 +6,9 @@ import { authenticate, isUsernameAvailable } from './services.js';
 
 const { username } = users;
 
-const bestTimeInMs = z.coerce.number().int().positive();
 const alphanumericRegex = /\w/g;
+
+const bestTimeInMs = z.coerce.number().int().positive();
 
 export const userSchema = z.object({
 	username: z

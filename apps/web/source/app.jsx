@@ -10,12 +10,12 @@ export const App = () => {
 	const authenticationRef = useRef(null);
 	const successRef = useRef(null);
 
-	const [isFirstRender, setIsFirstRender] = useState(true);
+	const [canWelcome, setCanWelcome] = useState(true);
 	const [canTick, setCanTick] = useState(false);
 	const [timer, setTimer] = useState(0);
 
 	const handleWelcomeClose = () => {
-		setIsFirstRender(false);
+		setCanWelcome(false);
 		setCanTick(true);
 	};
 
@@ -48,8 +48,8 @@ export const App = () => {
 	];
 
 	useEffect(() => {
-		if (isFirstRender) welcomeRef.current.showModal();
-	}, [isFirstRender]);
+		if (canWelcome) welcomeRef.current.showModal();
+	}, [canWelcome]);
 
 	useInterval(() => setTimer(timer + 1), canTick ? 1 : null);
 

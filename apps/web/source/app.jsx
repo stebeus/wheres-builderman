@@ -19,7 +19,7 @@ export const App = () => {
 		setCanTick(true);
 	};
 
-	const handleAction = () => {
+	const handleAuthenticationAction = () => {
 		authenticationRef.current.close();
 		successRef.current.showModal();
 	};
@@ -38,7 +38,7 @@ export const App = () => {
 			id: 'authentication',
 			closedBy: 'none',
 			ref: authenticationRef,
-			children: <Authentication bestTimeInMs={timer} onAction={handleAction} />,
+			children: <Authentication bestTimeInMs={timer} onAction={handleAuthenticationAction} />,
 		},
 		{
 			id: 'success',

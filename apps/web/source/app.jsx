@@ -27,6 +27,7 @@ export const App = () => {
 	const modals = [
 		{
 			id: 'welcome',
+			closedBy: 'none',
 			ref: welcomeRef,
 			children: <Welcome onClose={handleWelcomeClose} />,
 		},

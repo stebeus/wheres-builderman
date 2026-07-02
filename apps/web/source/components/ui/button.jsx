@@ -4,8 +4,8 @@ export const Button = ({ type = 'button', children, ...props }) => (
 	</button>
 );
 
-export const CloseButton = ({ commandFor, children }) => (
-	<Button command="close" commandfor={`${commandFor}-modal`} aria-label="close">
+export const CloseButton = ({ commandFor, onClick, children }) => (
+	<Button command="close" commandfor={`${commandFor}-modal`} aria-label="close" onClick={onClick}>
 		{children}
 	</Button>
 );

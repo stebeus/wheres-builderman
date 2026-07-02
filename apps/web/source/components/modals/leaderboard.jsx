@@ -1,9 +1,10 @@
 import { CloseButton, ErrorFallback, Loader } from '#root/components/ui/index.js';
 import { useFetch } from '#root/hooks/fetch.js';
+import { toApproximatedSecond } from '#root/utilities/formatters.js';
 
 const createScore = ({ id, username, bestTimeInMs }) => (
 	<li key={id}>
-		{username} {bestTimeInMs}
+		{username} {toApproximatedSecond(bestTimeInMs)}
 	</li>
 );
 

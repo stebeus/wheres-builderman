@@ -9,7 +9,7 @@ export const App = () => {
 	const authenticationRef = useRef(null);
 	const successRef = useRef(null);
 
-	const [time, setTime] = useState(0);
+	const [timer, setTimer] = useState(0);
 
 	const handleAction = () => {
 		authenticationRef.current.close();
@@ -30,7 +30,7 @@ export const App = () => {
 			id: 'authentication',
 			closedBy: 'none',
 			ref: authenticationRef,
-			children: <Authentication bestTimeInMs={time} onAction={handleAction} />,
+			children: <Authentication bestTimeInMs={timer} onAction={handleAction} />,
 		},
 		{
 			id: 'success',

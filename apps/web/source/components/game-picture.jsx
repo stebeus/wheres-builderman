@@ -37,7 +37,9 @@ const createCell = (row, positionSetter) => (description, column) => {
 			{...tabIndex}
 			onClick={handleClick}
 			key={crypto.randomUUID()}
-		></Button>
+		>
+			{ariaLabel['aria-label']}
+		</Button>
 	);
 };
 

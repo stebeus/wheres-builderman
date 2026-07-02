@@ -22,8 +22,6 @@ export const CharactersPopover = ({ characters, position, wasFoundSetter }) => {
 				return isCharacter && pos === position ? { ...character, wasFound: true } : character;
 			}),
 		);
-
-		alert('yes');
 	};
 
 	const createCharacter = ({ id, name }) => (

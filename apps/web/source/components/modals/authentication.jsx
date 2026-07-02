@@ -34,12 +34,12 @@ const submitButtons = [
 
 const isSignIn = (endpoint) => endpoint === submitButtons[0].endpoint;
 
-export const Authentication = ({ time, onAction }) => {
+export const Authentication = ({ bestTimeInMs, onAction }) => {
 	const [endpoint, setEndpoint] = useState('');
 
 	const { error, handleSubmit } = useForm({
 		endpoint: `users/${endpoint}`,
-		payload: { bestTimeInMs: time },
+		payload: { bestTimeInMs },
 		onAction,
 	});
 
@@ -52,7 +52,7 @@ export const Authentication = ({ time, onAction }) => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<h2>New high score!</h2>
-			<p>You finished in {toApproximatedSecond(time)}.</p>
+			<p>You finished in {toApproximatedSecond(bestTimeInMs)}.</p>
 			<p>Log in or register to save your score:</p>
 			{fieldErrors}
 			{fields.map(createField)}

@@ -30,7 +30,7 @@ export const App = () => {
 			id: 'authentication',
 			closedBy: 'none',
 			ref: authenticationRef,
-			children: <Authentication time={time} onAction={handleAction} />,
+			children: <Authentication bestTimeInMs={time} onAction={handleAction} />,
 		},
 		{
 			id: 'success',
@@ -40,7 +40,6 @@ export const App = () => {
 	];
 
 	useEffect(() => welcomeRef.current.showModal());
-
 	return (
 		<>
 			<Navbar />

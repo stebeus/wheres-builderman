@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { createField, FieldErrors, getFieldErrors, Input } from '#root/components/forms/index.js';
 import { createSubmitButton } from '#root/components/ui/index.js';
 import { useForm } from '#root/hooks/form.js';
-import { toSeconds } from '#root/utilities/formatters.js';
+import { toApproximatedSecond } from '#root/utilities/formatters.js';
 
 const fields = [
 	{
@@ -52,7 +52,7 @@ export const Authentication = ({ time, onAction }) => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<h2>New high score!</h2>
-			<p>You finished in {toSeconds(time)}.</p>
+			<p>You finished in {toApproximatedSecond(time)}.</p>
 			<p>Log in or register to save your score:</p>
 			{fieldErrors}
 			{fields.map(createField)}

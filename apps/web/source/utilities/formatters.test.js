@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { pluralize, toSeconds } from './formatters.js';
+import { pluralize, toApproximatedSecond } from './formatters.js';
 
 describe('pluralize', () => {
 	describe('Given no options,', () => {
@@ -34,12 +34,16 @@ describe('pluralize', () => {
 	});
 });
 
-describe('toSeconds', () => {
+describe('toApproximatedSecond', () => {
 	it('formats 1,000 milliseconds to 1 second', () => {
-		expect(toSeconds(1000)).toBe('1 second');
+		expect(toApproximatedSecond(1000)).toBe('1 second');
+	});
+
+	it('formats 1,500 milliseconds to 1.5 seconds', () => {
+		expect(toApproximatedSecond(1.5 * 1000)).toBe('1.5 seconds');
 	});
 
 	it('formats 10,000 milliseconds to 10 seconds', () => {
-		expect(toSeconds(10 * 1000)).toBe('10 seconds');
+		expect(toApproximatedSecond(10 * 1000)).toBe('10 seconds');
 	});
 });

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export const useInterval = (handler, delay = 1000) => {
+export const useInterval = (handler, delay) => {
 	const handlerRef = useRef(null);
 
 	useEffect(() => {

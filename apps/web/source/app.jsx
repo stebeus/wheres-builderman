@@ -9,7 +9,12 @@ export const App = () => {
 	const authenticationRef = useRef(null);
 	const successRef = useRef(null);
 
+	const [isFirstRender, setIsFirstRender] = useState(true);
 	const [timer, setTimer] = useState(0);
+
+	const handleWelcomeClose = () => {
+		setIsFirstRender(false);
+	};
 
 	const handleAction = () => {
 		authenticationRef.current.close();
@@ -20,7 +25,7 @@ export const App = () => {
 		{
 			id: 'welcome',
 			ref: welcomeRef,
-			children: <Welcome />,
+			children: <Welcome onClose={handleWelcomeClose} />,
 		},
 		{
 			id: 'leaderboard',
@@ -39,7 +44,10 @@ export const App = () => {
 		},
 	];
 
-	useEffect(() => welcomeRef.current.showModal());
+	useEffect(() => {
+		if (isFirstRender) welcomeRef.current.showModal();
+	}, [isFirstRender]);
+
 	return (
 		<>
 			<Navbar />

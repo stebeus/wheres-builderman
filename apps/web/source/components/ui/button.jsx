@@ -10,8 +10,8 @@ export const CloseButton = ({ commandFor, onClick, children }) => (
 	</Button>
 );
 
-const SubmitButton = ({ children, ...props }) => (
-	<Button type="submit" {...props}>
+const SubmitButton = ({ children, onClick }) => (
+	<Button type="submit" onClick={onClick}>
 		{children}
 	</Button>
 );

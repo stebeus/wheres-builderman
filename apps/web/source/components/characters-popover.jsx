@@ -6,12 +6,24 @@ import { Button } from './ui/button.jsx';
 
 export const popoverIdContext = createContext('characters-popover');
 
-export const CharactersPopover = ({ characters, position }) => {
+export const CharactersPopover = ({ characters, position, wasFoundSetter }) => {
 	const popoverId = useContext(popoverIdContext);
 
 	const handleClick = async (name) => {
 		const isCharacter = await fetchData(`characters/name/${name}/position/${position}`);
-		console.log(isCharacter); // todo: Expand handler functionality
+
+		if (!isCharacter) return alert('no');
+
+		wasFoundSetter(
+			characters.map((character) => {
+				const [row, column] = character.position;
+				const pos = `${row},${column}`;
+
+				return isCharacter && pos === position ? { ...character, wasFound: true } : character;
+			}),
+		);
+
+		alert('yes');
 	};
 
 	const createCharacter = ({ id, name }) => (

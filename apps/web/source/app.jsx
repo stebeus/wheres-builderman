@@ -19,6 +19,7 @@ export const App = () => {
 
 	const [time, setTime] = useState(0);
 	const [position, setPosition] = useState('');
+	const [newData, setNewData] = useState([]);
 
 	const { isLoading, error, data = [] } = useFetch('characters');
 
@@ -46,25 +47,31 @@ export const App = () => {
 	];
 
 	useEffect(() => {
-		if (!isLoading) welcomeRef.current.showModal();
-	}, [isLoading]);
+		if (!isLoading) {
+			welcomeRef.current.showModal();
+			setNewData(data.map((datum) => ({ ...datum, wasFound: false })));
+		}
+	}, [isLoading, data]);
 
 	if (isLoading) return <Loader />;
 	if (error != null) return <ErrorFallback error={error} />;
+
+	console.log(newData);
 
 	return (
 		<>
 			<StrictMode>
 				<Navbar />
 				<main>
-					<GamePicture characters={data} positionSetter={setPosition} />
-					<CharactersPopover characters={data} position={position} />
+					<p>{newData.filter(({ wasFound }) => !wasFound).length} characters remaining</p>
+					<GamePicture characters={newData} positionSetter={setPosition} />
+					<CharactersPopover characters={newData} position={position} wasFoundSetter={setNewData} />
 				</main>
 				<Footer />
 				{modals.map(createModal)}
 			</StrictMode>
 			<Modal id="welcome" ref={welcomeRef}>
-				<Welcome characters={data} />
+				<Welcome characters={newData} />
 			</Modal>
 		</>
 	);

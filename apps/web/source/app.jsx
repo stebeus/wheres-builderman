@@ -39,7 +39,7 @@ export const App = () => {
 			id: 'authentication',
 			closedBy: 'none',
 			ref: authenticationRef,
-			children: <Authentication bestTimeInMs={timer} onAction={handleAuthenticationAction} />,
+			children: <Authentication bestTimeInCs={timer} onAction={handleAuthenticationAction} />,
 		},
 		{
 			id: 'success',

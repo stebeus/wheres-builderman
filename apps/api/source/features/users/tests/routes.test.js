@@ -5,7 +5,7 @@ import { app } from '#root/index.js';
 
 const URL = '/api/v1/users';
 
-const createData = (username, password, bestTimeInMs) => ({ username, password, bestTimeInMs });
+const createData = (username, password, bestTimeInCs) => ({ username, password, bestTimeInCs });
 
 describe('GET /users', () => {
 	it('gets all users', async () => {

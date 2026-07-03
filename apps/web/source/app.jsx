@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { Footer, Navbar } from './components/index.js';
-import { Authentication, Leaderboard, Success, Welcome } from './components/modals/index.js';
-import { createModal } from './components/ui/index.js';
+import { Authentication, Leaderboard, Modal, Success, Welcome } from './components/modals/index.js';
 import { useInterval } from './hooks/interval.js';
 
 export const App = () => {
@@ -10,47 +9,17 @@ export const App = () => {
 	const authenticationRef = useRef(null);
 	const successRef = useRef(null);
 
-	const [canWelcome, setCanWelcome] = useState(true);
 	const [canTick, setCanTick] = useState(false);
 	const [timer, setTimer] = useState(0);
 
-	const handleWelcomeClose = () => {
-		setCanWelcome(false);
-		setCanTick(true);
-	};
+	const handleWelcomeClose = () => setCanTick(true);
 
 	const handleAuthenticationAction = () => {
 		authenticationRef.current.close();
 		successRef.current.showModal();
 	};
 
-	const modals = [
-		{
-			id: 'welcome',
-			closedBy: 'none',
-			ref: welcomeRef,
-			children: <Welcome onClose={handleWelcomeClose} />,
-		},
-		{
-			id: 'leaderboard',
-			children: <Leaderboard />,
-		},
-		{
-			id: 'authentication',
-			closedBy: 'none',
-			ref: authenticationRef,
-			children: <Authentication bestTimeInCs={timer} onAction={handleAuthenticationAction} />,
-		},
-		{
-			id: 'success',
-			ref: successRef,
-			children: <Success />,
-		},
-	];
-
-	useEffect(() => {
-		if (canWelcome) welcomeRef.current.showModal();
-	}, [canWelcome]);
+	useEffect(() => welcomeRef.current.showModal(), []);
 
 	const centisecondDelay = 10;
 	useInterval(() => setTimer(timer + 1), canTick ? centisecondDelay : null);
@@ -60,7 +29,18 @@ export const App = () => {
 			<Navbar />
 			<main></main>
 			<Footer />
-			{modals.map(createModal)}
+			<Modal id="welcome" closedBy="none" ref={welcomeRef}>
+				<Welcome onClose={handleWelcomeClose} />
+			</Modal>
+			<Modal id="leaderboard">
+				<Leaderboard />
+			</Modal>
+			<Modal id="authentication" closedBy="none" ref={authenticationRef}>
+				<Authentication bestTimeInCs={timer} onAction={handleAuthenticationAction} />
+			</Modal>
+			<Modal id="success" ref={successRef}>
+				<Success />
+			</Modal>
 		</>
 	);
 };

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Footer, Navbar } from './components/index.js';
+import { Footer, Game, Navbar } from './components/index.js';
 import { Authentication, Leaderboard, Modal, Success, Welcome } from './components/modals/index.js';
 import { useInterval } from './hooks/interval.js';
 
@@ -27,7 +27,12 @@ export const App = () => {
 	return (
 		<>
 			<Navbar />
-			<main></main>
+			<Game
+				authenticationRef={authenticationRef}
+				timer={timer}
+				canTickSetter={setCanTick}
+				timerSetter={setTimer}
+			/>
 			<Footer />
 			<Modal id="welcome" closedBy="none" ref={welcomeRef}>
 				<Welcome onClose={handleWelcomeClose} />

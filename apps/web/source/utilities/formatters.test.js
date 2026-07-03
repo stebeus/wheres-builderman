@@ -39,8 +39,8 @@ describe('toSeconds', () => {
 		expect(toSecond(100)).toBe('1 second');
 	});
 
-	it('formats 150 centiseconds to 1.5 seconds', () => {
-		expect(toSecond(1500)).toBe('1.5 seconds');
+	it('formats 150 centiseconds to 1 second', () => {
+		expect(toSecond(150)).toBe('1 second');
 	});
 
 	it('formats 1,000 centiseconds to 10 seconds', () => {

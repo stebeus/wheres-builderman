@@ -6,6 +6,6 @@ export const pluralize = (count, noun, { suffix = 's', plural } = {}) => {
 
 export const toSecond = (centisecond) => {
 	const oneSecond = 100;
-	const second = Math.round(centisecond / oneSecond);
+	const second = Math.floor(centisecond / oneSecond);
 	return `${second} ${pluralize(second, 'second')}`;
 };

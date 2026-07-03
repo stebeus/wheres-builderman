@@ -3,7 +3,8 @@ import { sql } from 'drizzle-orm';
 import { characters } from '#root/database/schema.js';
 import { database } from '#root/libraries/database.js';
 
-export const findMany = async () => await database.select().from(characters);
+export const findMany = async () =>
+	await database.select().from(characters).orderBy(sql`LOWER(${characters.name})`);
 
 export const isCharacter = async ({ name, position }) => {
 	const [row, column] = position.split(',');

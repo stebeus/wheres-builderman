@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { createField, FieldErrors, getFieldErrors, Input } from '#root/components/forms/index.js';
-import { createSubmitButton } from '#root/components/ui/index.js';
+import { createSubmitButton, ModalBody, ModalHeading } from '#root/components/ui/index.js';
 import { useForm } from '#root/hooks/form.js';
 import { formatSeconds } from '#root/utilities/formatters.js';
 
@@ -51,12 +51,14 @@ export const Authentication = ({ bestTimeInCs, onAction }) => {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<h2>New high score!</h2>
-			<p>You finished in {formatSeconds(bestTimeInCs)}.</p>
-			<p>Log in or register to save your score:</p>
-			{fieldErrors}
-			{fields.map(createField)}
-			{submitButtons.map(createSubmitButton(handleClick))}
+			<ModalHeading>New high score!</ModalHeading>
+			<ModalBody>
+				<p>You finished in {formatSeconds(bestTimeInCs)}.</p>
+				<p>Log in or register to save your score:</p>
+				{fieldErrors}
+				{fields.map(createField)}
+				{submitButtons.map(createSubmitButton(handleClick))}
+			</ModalBody>
 		</form>
 	);
 };

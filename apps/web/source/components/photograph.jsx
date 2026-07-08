@@ -39,6 +39,7 @@ const createCell = (row, positionSetter) => (placements, column) => {
 
 	return (
 		<Button
+			className="Cell cursor-crosshair outline-transparent transition-500 transition-all transition-discrete ease-in-out focus:rounded-full focus:outline-dashed focus:outline-2 focus:outline-white focus:outline-offset-2"
 			popoverTarget={popoverId}
 			{...disabled}
 			{...ariaLabel}
@@ -55,5 +56,11 @@ export const Photograph = ({ characters = [], positionSetter }) => {
 
 	const createRow = (_, row) => grid[row].map(createCell(row, positionSetter));
 
-	return <div className="grid">{grid.map(createRow)}</div>;
+	return (
+		<div className="border-2 border-accent bg-base p-2 pb-0">
+			<div className="grid grid-cols-(--photograph-width) grid-rows-(--photograph-height) bg-[url(/wheres-builderman.webp)] bg-contain bg-no-repeat">
+				{grid.map(createRow)}
+			</div>
+		</div>
+	);
 };

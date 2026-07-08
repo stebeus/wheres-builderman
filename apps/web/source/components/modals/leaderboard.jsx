@@ -1,13 +1,23 @@
 import { useEffect, useState } from 'react';
 
-import { Button, CloseButton, ErrorFallback, Loader } from '#root/components/ui/index.js';
+import {
+	Button,
+	CloseButton,
+	ErrorFallback,
+	Loader,
+	ModalBody,
+	ModalHeading,
+} from '#root/components/ui/index.js';
 import { useFetch } from '#root/hooks/fetch.js';
 import { fetchData } from '#root/services/fetch.js';
 import { formatSeconds } from '#root/utilities/formatters.js';
 
 const createUser = ({ id, username, bestTimeInCs }) => (
 	<li key={id}>
-		{username} {formatSeconds(bestTimeInCs)}
+		<p className="flex justify-between">
+			<span>{username}</span>
+			<span>{formatSeconds(bestTimeInCs)}</span>
+		</p>
 	</li>
 );
 
@@ -24,10 +34,26 @@ export const Leaderboard = () => {
 
 	return (
 		<>
-			<h2>Leaderboard</h2>
-			<ol>{users?.map(createUser)}</ol>
-			<Button onClick={handleClick}>Reload users</Button>
-			<CloseButton commandFor="leaderboard">Close</CloseButton>
+			<div className="flex items-center justify-between">
+				<ModalHeading>Leaderboard</ModalHeading>
+				<div className="flex gap-1">
+					<Button
+						className="interactive border border-content bg-linear-to-b from-2% from-base to-98% to-border text-content"
+						onClick={handleClick}
+					>
+						Reload users
+					</Button>
+					<CloseButton
+						className="interactive border border-red-950 bg-linear-to-b from-2% from-red-600 to-98% to-red-700 text-red-50"
+						commandFor="leaderboard"
+					>
+						Close
+					</CloseButton>
+				</div>
+			</div>
+			<ModalBody>
+				<ol className="list-decimal pl-4">{users?.map(createUser)}</ol>
+			</ModalBody>
 		</>
 	);
 };

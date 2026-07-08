@@ -1,6 +1,6 @@
 const Field = ({ label, children }) => (
-	<label>
-		<span>{label}</span>
+	<label className="stack items-center">
+		<span className="font-medium">{label}</span>
 		{children}
 	</label>
 );

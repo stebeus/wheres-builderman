@@ -1,9 +1,11 @@
-import { CloseButton } from '#root/components/ui/index.js';
+import { GreenCloseButton, ModalBody, ModalHeading } from '#root/components/ui/index.js';
 
 export const Success = () => (
 	<>
-		<h2>Success!</h2>
-		<p>You can now check your score in the leaderboard or restart the game.</p>
-		<CloseButton commandFor="success">OK</CloseButton>
+		<ModalHeading>Success!</ModalHeading>
+		<ModalBody>
+			<p>You can now check your score in the leaderboard or restart the game.</p>
+			<GreenCloseButton commandFor="success">OK</GreenCloseButton>
+		</ModalBody>
 	</>
 );

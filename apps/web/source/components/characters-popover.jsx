@@ -14,6 +14,8 @@ export const CharactersPopover = ({ characters = [], position, charactersSetter 
 			`characters/is-character?name=${name}&position=${position}`,
 		);
 
+		if (!isCharacter) return alert('Wrong character!');
+
 		const updateCharacters = (character) =>
 			character.name === name && isCharacter ? { ...character, wasFound: true } : character;
 
@@ -21,7 +23,7 @@ export const CharactersPopover = ({ characters = [], position, charactersSetter 
 	};
 
 	const createCharacter = ({ id, name }) => (
-		<li key={id}>
+		<li key={id} className="interactive border-border not-last:border-b">
 			<Button popoverTarget={popoverId} role="menuitem" onClick={() => handleClick(name, position)}>
 				{name}
 			</Button>
@@ -29,7 +31,7 @@ export const CharactersPopover = ({ characters = [], position, charactersSetter 
 	);
 
 	return (
-		<ul id={popoverId} popover="auto">
+		<ul id={popoverId} className="border-2 border-accent p-2 text-content" popover="auto">
 			{characters.map(createCharacter)}
 		</ul>
 	);

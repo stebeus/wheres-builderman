@@ -5,7 +5,7 @@ import { formatSeconds, getDurationInSeconds } from '#root/utilities/index.js';
 
 import { CharactersPopover } from './characters-popover.jsx';
 import { Photograph } from './photograph.jsx';
-import { Button, ErrorFallback, Loader } from './ui/index.js';
+import { ErrorFallback, Loader, MainButton } from './ui/index.js';
 
 const createCharacter = (character) => ({ ...character, wasFound: false });
 
@@ -39,16 +39,20 @@ export const Game = ({ authenticationRef, timer, canTickSetter, timerSetter }) =
 
 	return (
 		<main>
-			<time dateTime={getDurationInSeconds(timer)} aria-live="off" role="timer">
-				{formatSeconds(timer, { shouldRound: true })}
-			</time>
-			<p>{remainingCharacters?.length} characters remaining</p>
-
-			<Button onClick={handleRestart}>Restart</Button>
-			<Button commandfor="leaderboard-modal" command="show-modal">
-				Leaderboard
-			</Button>
-
+			<div className="flex flex-wrap justify-between">
+				<div className="*:pipe-separator-inverted flex flex-wrap bg-accent px-3 py-1 font-medium text-base">
+					<time dateTime={getDurationInSeconds(timer)} aria-live="off" role="timer">
+						{formatSeconds(timer, { shouldRound: true })}
+					</time>
+					<p>{remainingCharacters?.length} characters remaining</p>
+				</div>
+				<div className="flex flex-wrap gap-1">
+					<MainButton onClick={handleRestart}>Restart</MainButton>
+					<MainButton commandfor="leaderboard-modal" command="show-modal">
+						Leaderboard
+					</MainButton>
+				</div>
+			</div>
 			<Photograph characters={characters} positionSetter={setPosition} />
 			<CharactersPopover
 				characters={remainingCharacters}

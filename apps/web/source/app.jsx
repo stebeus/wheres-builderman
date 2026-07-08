@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { Footer, Game, Navbar } from './components/index.js';
-import { Authentication, Leaderboard, Modal, Success, Welcome } from './components/modals/index.js';
+import { Authentication, Leaderboard, Success, Welcome } from './components/modals/index.js';
+import { Modal } from './components/ui/modal.jsx';
+import { config } from './config.js';
 import { useInterval } from './hooks/interval.js';
 
 export const App = () => {
@@ -34,16 +36,21 @@ export const App = () => {
 				timerSetter={setTimer}
 			/>
 			<Footer />
-			<Modal id="welcome" closedBy="none" ref={welcomeRef}>
+			<Modal
+				id="welcome"
+				closedBy="none"
+				title={`Welcome to <em>${config.VITE_APP_NAME}</em>`}
+				ref={welcomeRef}
+			>
 				<Welcome onClose={handleWelcomeClose} />
 			</Modal>
-			<Modal id="leaderboard">
+			<Modal id="leaderboard" title="Leaderboard">
 				<Leaderboard />
 			</Modal>
-			<Modal id="authentication" closedBy="none" ref={authenticationRef}>
+			<Modal id="authentication" closedBy="none" title="New high score!" ref={authenticationRef}>
 				<Authentication bestTimeInCs={timer} onAction={handleAuthenticationAction} />
 			</Modal>
-			<Modal id="success" ref={successRef}>
+			<Modal id="success" title="Success!" ref={successRef}>
 				<Success />
 			</Modal>
 		</>

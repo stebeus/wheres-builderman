@@ -19,7 +19,10 @@ const coercePosition = (value: string) => {
 };
 
 export const getCharactersParamsSchema = createSelectSchema(characters, {
-	position: z.string().regex(positionRegex).transform(coercePosition),
+	position: z
+		.string()
+		.regex(positionRegex, 'Position must be formatted as "row,column"')
+		.transform(coercePosition),
 }).omit({ id: true, description: true });
 
 export type GetCharactersParams = z.infer<typeof getCharactersParamsSchema>;

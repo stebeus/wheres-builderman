@@ -1,5 +1,5 @@
 {
-	"name": "wheres-builderman",
+	"name": "wheres-is-shedletsky",
 	"private": true,
 	"scripts": {
 		"build": "turbo run build",

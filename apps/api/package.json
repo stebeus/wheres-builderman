@@ -4,12 +4,12 @@
 	"private": true,
 	"type": "module",
 	"imports": {
-		"#root/*": "./source/*"
+		"#root/*": "./src/*"
 	},
 	"scripts": {
 		"db:push": "drizzle-kit push",
 		"db:studio": "drizzle-kit studio --port=3999 --verbose",
-		"start": "node --watch source/server.js",
+		"start": "node --watch src/server.js",
 		"test": "vitest"
 	},
 	"dependencies": {

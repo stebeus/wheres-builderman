@@ -1,0 +1,97 @@
+[
+	{
+		"name": "mrgamewatch_fan",
+		"description": "An enthusiast of the best Nintendo character",
+		"position": { "x": 6, "y": 8 }
+	},
+	{
+		"name": "BIGGER_HEAD",
+		"description": "A red noob with an iconic hat",
+		"position": { "x": 7, "y": 13 }
+	},
+	{
+		"name": "salih1",
+		"description": "The creator of the PolandBall roleplaying game",
+		"position": { "x": 7, "y": 17 }
+	},
+	{
+		"name": "waffler",
+		"description": "A king holding a famous Belgian-French food",
+		"position": { "x": 8, "y": 2 }
+	},
+	{
+		"name": "Cop",
+		"description": "The most hated person in prison games",
+		"position": { "x": 8, "y": 4 }
+	},
+	{
+		"name": "stanoob",
+		"description": "A novice from the Stanford university",
+		"position": { "x": 8, "y": 6 }
+	},
+	{
+		"name": "admint",
+		"description": "That one player who guards servers",
+		"position": { "x": 8, "y": 9 }
+	},
+	{
+		"name": "Mr_Emeraldz",
+		"description": "A rich and green noob",
+		"position": { "x": 8, "y": 10 }
+	},
+	{
+		"name": "yellowt3a",
+		"description": "The creator of the image used in this game",
+		"position": { "x": 8, "y": 12 }
+	},
+	{
+		"name": "Builderman",
+		"description": "A player with a constructor helmet",
+		"position": { "x": 8, "y": 15 }
+	},
+	{
+		"name": "bluejay55669",
+		"description": "The 55669th bird of the Mordecai's species",
+		"position": { "x": 8, "y": 16 }
+	},
+	{
+		"name": "pugz_pugz",
+		"description": "A pug mom",
+		"position": { "x": 8, "y": 18 }
+	},
+	{
+		"name": "texan_rancher",
+		"description": "A southern herdsman",
+		"position": { "x": 8, "y": 20 }
+	},
+	{
+		"name": "dripnoob",
+		"description": "A dapper novice",
+		"position": { "x": 8, "y": 22 }
+	},
+	{
+		"name": "Batman",
+		"description": "One of the most famous superheroes",
+		"position": { "x": 8, "y": 24 }
+	},
+	{
+		"name": "u238",
+		"description": "Abbreviation of the most common natural isotope of uranium",
+		"position": { "x": 9, "y": 4 }
+	},
+	{
+		"name": "LugiaMaster",
+		"description": "Owner of a legendary Pokémon",
+		"position": { "x": 9, "y": 8 }
+	},
+	{
+		"name": "ThatOneNukeKiller",
+		"description": "The funniest guy in parties",
+		"position": { "x": 9, "y": 11 }
+	},
+	{
+		"name": "lua_junior",
+		"description": "A graduate of the scripting language used in Roblox",
+		"position": { "x": 9, "y": 16 }
+	}
+]

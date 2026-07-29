@@ -1,10 +1,15 @@
 {
+	"$schema": "https://biomejs.dev/schemas/2.5.6/schema.json",
 	"extends": "//",
-	"assist": {
-		"actions": {
-			"source": {
-				"noDuplicateClasses": "on",
-				"useSortedProperties": "on"
+	"linter": {
+		"rules": {
+			"nursery": {
+				"useBaseline": "on",
+				"useSortedClasses": "on"
+			},
+			"style": {
+				"noHexColors": "on",
+				"useConsistentCurlyBraces": "on"
 			}
 		}
 	},
@@ -21,24 +26,46 @@
 			"enabled": true
 		}
 	},
-	"linter": {
-		"rules": {
-			"a11y": {
-				"noLabelWithoutControl": "off"
-			},
-			"nursery": {
-				"useBaseline": "error",
-				"useSortedClasses": "error"
-			},
-			"style": {
-				"noHexColors": "error"
+	"assist": {
+		"actions": {
+			"source": {
+				"noDuplicateClasses": "on",
+				"useSortedProperties": "on"
 			}
 		}
 	},
 	"overrides": [
 		{
+			"includes": ["**/*.{jsx,tsx}"],
+			"linter": {
+				"rules": {
+					"style": {
+						"useNamingConvention": {
+							"level": "on",
+							"options": {
+								"conventions": [
+									{
+										"formats": ["camelCase", "PascalCase"],
+										"selector": {
+											"kind": "objectLiteralProperty"
+										}
+									}
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		{
 			"includes": ["**/*.svg"],
-			"linter": { "rules": { "a11y": { "noSvgWithoutTitle": "off" } } }
+			"linter": {
+				"rules": {
+					"a11y": {
+						"noSvgWithoutTitle": "off"
+					}
+				}
+			}
 		}
 	]
 }

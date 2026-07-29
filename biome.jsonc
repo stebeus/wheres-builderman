@@ -1,5 +1,83 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.5.1/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.5.6/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"ignoreUnknown": false
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"lineWidth": 100
+	},
+	"linter": {
+		"enabled": true,
+		"domains": {
+			"project": "all",
+			"types": "all"
+		},
+		"rules": {
+			"preset": "recommended",
+			"complexity": {
+				"preset": "all",
+				"noExcessiveLinesPerFunction": "off"
+			},
+			"correctness": {
+				"noUndeclaredDependencies": "off"
+			},
+			"style": {
+				"noCommonJs": "on",
+				"noExportedImports": "on",
+				"noNegationElse": "on",
+				"noNestedTernary": "on",
+				"noParameterAssign": "on",
+				"noSubstr": "on",
+				"noUnusedTemplateLiteral": "on",
+				"noUselessElse": "on",
+				"noYodaExpression": "on",
+				"useAtIndex": "on",
+				"useCollapsedIf": "on",
+				"useConsistentArrowReturn": "on",
+				"useConsistentObjectDefinitions": "on",
+				"useDefaultParameterLast": "on",
+				"useDefaultSwitchClause": "on",
+				"useDestructuring": "on",
+				"useFilenamingConvention": "on",
+				"useForOf": "on",
+				"useNamingConvention": "on",
+				"useNumericSeparators": "on",
+				"useObjectSpread": "on",
+				"useShorthandAssign": "on",
+				"useSingleVarDeclarator": "on",
+				"useThrowNewError": "on",
+				"useTrimStartEnd": "on",
+				"noRestrictedImports": {
+					"level": "on",
+					"options": {
+						"patterns": [
+							{
+								"group": "../**/*",
+								"message": "Avoid relative parent imports. Use `#root/` absolute paths instead."
+							}
+						]
+					}
+				}
+			},
+			"suspicious": {
+				"noForIn": "on",
+				"noVar": "on",
+				"useAwait": "on"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single"
+		}
+	},
 	"assist": {
 		"enabled": true,
 		"actions": {
@@ -14,9 +92,9 @@
 							":BLANK_LINE:",
 							":NODE:",
 							":BLANK_LINE:",
-							[":PACKAGE_WITH_PROTOCOL:", ":PACKAGE:", "!@repository/**"],
+							[":PACKAGE_WITH_PROTOCOL:", ":PACKAGE:", "!@repo/**"],
 							":BLANK_LINE:",
-							"@repository/**",
+							"@repo/**",
 							":BLANK_LINE:",
 							":ALIAS:",
 							":BLANK_LINE:",
@@ -25,105 +103,47 @@
 							{ "kind": "bare" }
 						]
 					}
-				},
-				"useSortedKeys": {
-					"level": "on",
-					"options": {
-						"groupByNesting": true
-					}
 				}
-			}
-		}
-	},
-	"files": {
-		"ignoreUnknown": false
-	},
-	"formatter": {
-		"enabled": true,
-		"indentStyle": "tab",
-		"lineWidth": 100
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "single"
-		}
-	},
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"preset": "recommended",
-			"complexity": {
-				"preset": "all"
-			},
-			"correctness": {
-				"noGlobalDirnameFilename": "error",
-				"useImportExtensions": "error"
-			},
-			"style": {
-				"noCommonJs": "error",
-				"noExportedImports": "error",
-				"noNegationElse": "error",
-				"noNestedTernary": "error",
-				"noParameterAssign": "error",
-				"noSubstr": "error",
-				"noUnusedTemplateLiteral": "error",
-				"noUselessElse": "error",
-				"noYodaExpression": "error",
-				"useAtIndex": "error",
-				"useCollapsedIf": "error",
-				"useConsistentArrowReturn": "error",
-				"useConsistentObjectDefinitions": "error",
-				"useDefaultParameterLast": "error",
-				"useDefaultSwitchClause": "error",
-				"useDestructuring": "error",
-				"useForOf": "error",
-				"useNumericSeparators": "error",
-				"useObjectSpread": "error",
-				"useShorthandAssign": "error",
-				"useSingleVarDeclarator": "error",
-				"useThrowNewError": "error",
-				"useTrimStartEnd": "error",
-				"noRestrictedImports": {
-					"level": "error",
-					"options": {
-						"patterns": [
-							{
-								"group": "../**/*",
-								"message": "Avoid relative parent imports. Use `#root/` absolute paths instead."
-							}
-						]
-					}
-				},
-				"useFilenamingConvention": {
-					"level": "error",
-					"options": {
-						"filenameCases": ["kebab-case"]
-					}
-				}
-			},
-			"suspicious": {
-				"noConstantBinaryExpressions": "error",
-				"noImportCycles": "error",
-				"noVar": "error",
-				"useAwait": "error",
-				"useGuardForIn": "error"
 			}
 		}
 	},
 	"overrides": [
 		{
-			"assist": { "actions": { "source": { "useSortedKeys": "off" } } },
-			"includes": [
-				"**/*.{js,jsx,ts,tsx}",
-				"**/package.json",
-				"!**/*.config.{js,ts}",
-				"!**/libraries/**"
-			]
+			"includes": ["**/lib/**", "**/*.config.{js,ts}", "**/*.jsonc", "!**/biome.jsonc"],
+			"assist": {
+				"actions": {
+					"source": {
+						"useSortedKeys": {
+							"level": "on",
+							"options": {
+								"groupByNesting": true
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"includes": ["**/env.{js,ts}"],
+			"linter": {
+				"rules": {
+					"style": {
+						"useNamingConvention": {
+							"level": "on",
+							"options": {
+								"conventions": [
+									{
+										"formats": ["camelCase", "CONSTANT_CASE"],
+										"selector": {
+											"kind": "objectLiteralProperty"
+										}
+									}
+								]
+							}
+						}
+					}
+				}
+			}
 		}
-	],
-	"vcs": {
-		"clientKind": "git",
-		"enabled": true,
-		"useIgnoreFile": true
-	}
+	]
 }

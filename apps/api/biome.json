@@ -1,13 +1,11 @@
 {
+	"$schema": "https://biomejs.dev/schemas/2.5.6/schema.json",
 	"extends": "//",
 	"linter": {
 		"rules": {
 			"correctness": {
-				"noProcessGlobal": "error",
-				"noUnusedFunctionParameters": "off"
-			},
-			"suspicious": {
-				"noConsole": "error"
+				"noGlobalDirnameFilename": "on",
+				"noProcessGlobal": "on"
 			}
 		}
 	}

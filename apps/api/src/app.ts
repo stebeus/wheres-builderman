@@ -11,4 +11,4 @@ app.use(logger());
 
 app.use(cors({ origin: env.CLIENT_URL }));
 
-app.route('/api/v1/', routes);
+app.route('/api/v1', routes);

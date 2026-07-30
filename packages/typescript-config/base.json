@@ -5,6 +5,7 @@
 		"erasableSyntaxOnly": true,
 		"noEmit": true,
 		"skipLibCheck": true,
+		"target": "esnext",
 		"verbatimModuleSyntax": true
 	}
 }

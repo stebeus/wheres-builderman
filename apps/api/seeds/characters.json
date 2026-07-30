@@ -6,7 +6,7 @@
 	},
 	{
 		"name": "BIGGER_HEAD",
-		"description": "A red noob with an iconic hat",
+		"description": "A red noob with a large head",
 		"position": { "x": 7, "y": 13 }
 	},
 	{
@@ -46,7 +46,7 @@
 	},
 	{
 		"name": "Builderman",
-		"description": "A player with a constructor helmet",
+		"description": "A player with a construction helmet",
 		"position": { "x": 8, "y": 15 }
 	},
 	{
@@ -76,12 +76,12 @@
 	},
 	{
 		"name": "u238",
-		"description": "Abbreviation of the most common natural isotope of uranium",
+		"description": "The abbreviation of the most common natural isotope of uranium",
 		"position": { "x": 9, "y": 4 }
 	},
 	{
 		"name": "LugiaMaster",
-		"description": "Owner of a legendary Pokémon",
+		"description": "An owner of a legendary Pokémon",
 		"position": { "x": 9, "y": 8 }
 	},
 	{

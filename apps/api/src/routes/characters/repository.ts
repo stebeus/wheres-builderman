@@ -1,6 +1,6 @@
 import { and, eq, sql } from 'drizzle-orm';
 
-import { db } from '#root/db/index.ts';
+import { db } from '#root/db/client.ts';
 
 import { characters, type GetCharactersParams, type NewCharacter } from './schema.ts';
 

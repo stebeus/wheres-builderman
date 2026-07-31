@@ -9,4 +9,4 @@ const { success, error, data } = z.safeParse(envSchema, import.meta.env);
 
 if (!success) throw new Error(z.prettifyError(error));
 
-export const config = data;
+export const env = data;

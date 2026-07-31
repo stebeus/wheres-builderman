@@ -7,7 +7,7 @@
 		"#root/*": "./src/*"
 	},
 	"scripts": {
-		"build": "vite build",
+		"build": "tsc --build && vite build",
 		"dev": "vite",
 		"preview": "vite preview",
 		"test": "vitest"

@@ -17,10 +17,8 @@ describe('GET /users', () => {
 const createUser = (username = '', password = '', bestTime = '') =>
 	new URLSearchParams({ username, password, bestTime });
 
-const generateUsername = (username = 'john_doe') => {
-	const { epochNanoseconds } = Temporal.Now.instant();
-	return `${username}_${epochNanoseconds}`;
-};
+const generateUsername = (username = 'john_doe') =>
+	`${username}_${Temporal.Now.instant().epochNanoseconds}`;
 
 const generateBestTime = () => {
 	const oneDay = 24 * 60 * 60 * 1000;
